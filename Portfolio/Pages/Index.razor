@@ -1,0 +1,35 @@
+﻿@page "/"
+
+@{
+    if (state == 0)
+    {
+        <Intro></Intro>
+    }
+    else if (state == 1)
+    {
+        <Home></Home>
+    }
+  }
+@code{
+    public int state { get; set; }
+    protected override Task OnInitializedAsync()
+    {
+        ChangeState();
+        return base.OnInitializedAsync();
+    }
+    public async Task ChangeState()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            if (i == 0)
+            {
+                await Task.Delay(1);
+            }
+            else
+            {
+                state = i;
+                StateHasChanged();
+            }
+        }
+    }
+}
